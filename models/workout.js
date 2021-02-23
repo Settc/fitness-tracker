@@ -7,19 +7,19 @@ const WorkoutSchema = new Schema({
         default: Date.now
     },
 
-    exercise: {
+    exercise: [
+        {
         type: {
             type: String
         },
 
         name: {
             type: String,
-            unique: true,
-            required: true
+            
         },
 
         weight: {
-            type: Number,
+            type: Number
         },
 
         sets: {
@@ -40,6 +40,7 @@ const WorkoutSchema = new Schema({
             type: Number
         }
     }
+    ]
 })
 
 const Workout = mongoose.model("Workout", WorkoutSchema)

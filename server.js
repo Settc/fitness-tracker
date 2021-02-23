@@ -17,7 +17,13 @@ app.use(express.json())
 app.use(express.static("public"))
 app.use(logger("dev"));
 
-mongoose.connect(process.env.MONGO_URI || "mongodb://localhost/workout", { useNewUrlParser: true })
+mongoose.connect(process.env.MONGO_URI || "mongodb://localhost/workout", { 
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+  useFindAndModify: false
+  
+})
 
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname + "/public/index.html"))

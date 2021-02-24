@@ -73,7 +73,7 @@ app.put("/api/workouts/:id", (req, res) => {
       { new: true, runValidators: true }
     )
     .then((results) => {
-      console.dir(results, { depth: null })
+      console.log(JSON.stringify(results))
       res.json(results)
     })
     .catch((err) => {

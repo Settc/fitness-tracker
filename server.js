@@ -62,7 +62,7 @@ app.post("/api/workouts", (req, res) => {
 })
 
 app.put("/api/workouts/:id", (req, res) => {
-    db.UpdateOne({
+    db.findOneAndUpdate({
       _id: req.params.id
     }, {
       $push: {

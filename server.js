@@ -42,7 +42,7 @@ app.get("/", (req, res) => {
 
 
 app.get("/api/workouts", (req, res) => {
-    db.find({})
+    db.find({}).populate()
     .then((results) => {
         res.json(results)
     })
@@ -62,13 +62,15 @@ app.post("/api/workouts", (req, res) => {
 })
 
 app.put("/api/workouts/:id", (req, res) => {
-    db.findOneAndUpdate({
-      _id: req.params.id
-    }, {
+    db.findOneAndUpdate(
+      req.params.id,
+    {
       $push: {
         exercises: req.body
       }
-    })
+    },
+      { new: true, runValidators: true }
+    )
     .then((results) => {
       res.json(results)
     })

@@ -66,9 +66,9 @@ app.put("/api/workouts/:id", (req, res) => {
     db.findOneAndUpdate(
       req.params.id,
     {
-      $push: {
-        exercises: req.body
-      }
+      
+        exercises: [ {type: "cardio", name: "run", distance: 5, duration: 5} ]
+      
     },
       { new: true, runValidators: true }
     )

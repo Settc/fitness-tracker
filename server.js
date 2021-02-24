@@ -64,11 +64,13 @@ app.post("/api/workouts", (req, res) => {
 app.put("/api/workouts/:id", (req, res) => {
   console.log(req.body)
     db.findOneAndUpdate(
-      req.params.id,
+      {
+        _id: new mongoose.mongo.ObjectId(req.params.id)
+      }
     {
-      
-        exercises: [ {type: "cardio", name: "run", distance: 5, duration: 5} ]
-      
+      $push: {
+        exercises: req.body
+      }
     },
       { new: true, runValidators: true }
     )

@@ -52,8 +52,8 @@ app.get("/api/workouts", (req, res) => {
 })
 
 app.post("/api/workouts", (req, res) => {
-    db.create(req.body)
-        .then((req, res) => {
+    db.create( {} )
+        .then((results) => {
             res.json(results)
         })
         .catch((err) => {

@@ -42,7 +42,7 @@ app.get("/", (req, res) => {
 
 
 app.get("/api/workouts", (req, res) => {
-    db.find({}).populate()
+    db.find({})
     .then((results) => {
         res.json(results)
     })
@@ -62,6 +62,7 @@ app.post("/api/workouts", (req, res) => {
 })
 
 app.put("/api/workouts/:id", (req, res) => {
+  console.log(req.body)
     db.findOneAndUpdate(
       req.params.id,
     {
@@ -72,6 +73,7 @@ app.put("/api/workouts/:id", (req, res) => {
       { new: true, runValidators: true }
     )
     .then((results) => {
+      console.dir(results, { depth: null })
       res.json(results)
     })
     .catch((err) => {
